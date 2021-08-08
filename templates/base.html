@@ -1,0 +1,43 @@
+{% load static %}
+<html>
+
+<head>
+    <title>{% block title %}My site{% endblock %}</title>
+</head>
+
+<body>
+
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <h1>posts</h1>
+        <p>Добро пожаловать на мой сайт!</p> 
+      </div>
+
+    <nav class="navbar navbar-expand-md bg-light bg-dark navbar-dark">
+        <a class="navbar-brand" href="{% url 'all_news' %}">Главная</a>
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'news_new' %}">создать новость</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard' %}">панель управления</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'all_news' %}">выйти</a>
+                </li>
+                {% endif %}
+            </ul>
+
+            </ul>
+        </div>
+    </nav>
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+
+</html>
